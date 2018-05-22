@@ -1,5 +1,7 @@
 # todoapp-react-redux-immutable
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jackdbd/todoapp-react-redux-immutable.svg)](https://greenkeeper.io/)
+
 A simple Todo App built with:
 
 - React

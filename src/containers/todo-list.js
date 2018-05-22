@@ -20,17 +20,12 @@ const TodoList = props => {
     }
   };
 
-  // TODO
-  const toggleClick = id => {
-    console.log(id);
-  };
-
   const renderTodo = todo => {
     return (
       <li
         key={todo.id}
         className="todo__item"
-        onClick={toggleClick(todo.id)}
+        onClick={() => props.toggleTodo(todo.id)}
       >
         <Todo todo={todo} />
       </li>
@@ -45,7 +40,9 @@ const TodoList = props => {
         placeholder="Add todo"
         onKeyDown={onKeyDown}
       />
-      <ul className="todo__list">{props.todos.map(todo => renderTodo(todo))}</ul>
+      <ul className="todo__list">
+        {props.todos.map(todo => renderTodo(todo))}
+      </ul>
     </div>
   );
 };
@@ -56,7 +53,7 @@ const TodoList = props => {
 */
 function mapStateToProps(state) {
   const props = {
-    todos: state.todosStore.get('todos')
+    todos: state.todosStore.get("todos")
   };
   return props;
 }

@@ -1,4 +1,5 @@
 # todoapp-react-redux-immutable
+[![Build Status](https://travis-ci.org/jackdbd/todoapp-react-redux-immutable.svg?branch=master)](https://travis-ci.org/jackdbd/todoapp-react-redux-immutable) [![Greenkeeper badge](https://badges.greenkeeper.io/jackdbd/todoapp-react-redux-immutable.svg)](https://greenkeeper.io/) [![codecov](https://codecov.io/gh/jackdbd/todoapp-react-redux-immutable/branch/master/graph/badge.svg)](https://codecov.io/gh/jackdbd/todoapp-react-redux-immutable)
 
 A simple Todo App built with:
 

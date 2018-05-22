@@ -7,25 +7,27 @@ const defaultState = Map({
 
 export default function(state = defaultState, action) {
   // use some variables to improve readability
-  let newState, todos;
+  let newState, newTodo, newTodos;
 
   switch (action.type) {
     case ADD_TODO:
+      newTodo = Map(action.payload);
+      newTodos = state.get("todos").push(newTodo);
       newState = Map({
-        todos: state.get("todos").push(action.payload)
+        todos: newTodos
       });
       return newState;
 
     case TOGGLE_TODO:
-      todos = state.get("todos").map(todo => {
-        if (todo.id === action.payload) {
-          return { ...todo, isDone: !todo.isDone };
+      newTodos = state.get("todos").map(todo => {
+        if (todo.get("id") === action.payload) {
+          return todo.update("isDone", isDone => !isDone);
         } else {
           return todo;
         }
       });
       newState = Map({
-        todos
+        todos: newTodos
       });
       return newState;
     default:

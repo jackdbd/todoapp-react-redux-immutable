@@ -2,10 +2,11 @@ import React from "react";
 
 const Todo = props => {
   const { todo } = props;
-  if (todo.isDone) {
-    return <strike>{todo.text}</strike>;
+  // todo is a Map Immutable.js object, not a plain Javascript object
+  if (todo.get("isDone")) {
+    return <strike>{todo.get("text")}</strike>;
   } else {
-    return <span>{todo.text}</span>;
+    return <span>{todo.get("text")}</span>;
   }
 };
 

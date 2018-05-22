@@ -23,9 +23,9 @@ const TodoList = props => {
   const renderTodo = todo => {
     return (
       <li
-        key={todo.id}
+        key={todo.get("id")}
         className="todo__item"
-        onClick={() => props.toggleTodo(todo.id)}
+        onClick={() => props.toggleTodo(todo.get("id"))}
       >
         <Todo todo={todo} />
       </li>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { List, Map } from "immutable";
-import TodoList from "./components/todo-list";
+import TodoList from "./containers/todo-list";
 import "./App.css";
 
 const dummyTodos = List([

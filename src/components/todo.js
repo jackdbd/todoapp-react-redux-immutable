@@ -2,10 +2,10 @@ import React from "react";
 
 const Todo = props => {
   const { todo } = props;
-  if (todo.get("isDone")) {
-    return <strike>{todo.get("text")}</strike>;
+  if (todo.isDone) {
+    return <strike>{todo.text}</strike>;
   } else {
-    return <span>{todo.get("text")}</span>;
+    return <span>{todo.text}</span>;
   }
 };
 

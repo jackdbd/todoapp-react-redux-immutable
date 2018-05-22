@@ -1,31 +1,85 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Todo from "../components/todo";
 import { addTodo, toggleTodo } from "../actions";
+import Todo from "../components/todo";
 
 const TodoList = props => {
-  const { todos } = props;
+  // const { todos, addTodo, toggleTodo } = props;
+
+  const onKeyDown = event => {
+    const isEnterKey = event.which === 13;
+    if (isEnterKey) {
+      const input = event.target;
+      const text = input.value;
+      const isLongEnough = text.length > 0;
+      if (isLongEnough) {
+        props.addTodo(text);
+        input.value = "";
+      }
+    }
+  };
+
+  // TODO
+  const toggleClick = id => {
+    console.log(id);
+  };
+
+  const renderTodo = todo => {
+    return (
+      <li
+        key={todo.id}
+        className="todo__item"
+        onClick={toggleClick(todo.id)}
+      >
+        <Todo todo={todo} />
+      </li>
+    );
+  };
+
   return (
     <div className="todo">
-      <input type="text" placeholder="Add todo" />
-      <ul className="todo__list">
-        {todos.map(todo => (
-          <li key={todo.get("id")} className="todo__item">
-            <Todo todo={todo} />
-          </li>
-        ))}
-      </ul>
+      <input
+        className="todo__entry"
+        type="text"
+        placeholder="Add todo"
+        onKeyDown={onKeyDown}
+      />
+      <ul className="todo__list">{props.todos.map(todo => renderTodo(todo))}</ul>
     </div>
   );
 };
 
-// we don't need to map any state to props in this component, but `connect` still requires a first argument
-const mapStateToProps = null;
-
-function mapDispatchToProps(dispatch) {
-  bindActionCreators({ addTodo, toggleTodo }, dispatch);
+/*
+  Take a portion of the entire application state (managed by redux) and make it
+  available to this container component via props.
+*/
+function mapStateToProps(state) {
+  const props = {
+    todos: state.todosStore.get('todos')
+  };
+  return props;
 }
 
-// Promote the "dumb", redux-unaware, presentational component, to a "smart", redux-aware, container component
+/* 
+  Bind action creators to props and pass them to all reducers via the dispatch
+  function. Anything returned from this function will end up as props on the
+  TodoList container.
+*/
+function mapDispatchToProps(dispatch) {
+  // object destructuring: {addTodo (prop): addTodo (action creator)}
+  return bindActionCreators({ addTodo, toggleTodo }, dispatch);
+  /*
+    Note: the return statement above is equal to the following one:
+    return {
+      addTodo: text => dispatch(addTodo(text)),
+      toggleTodo: id => dispatch(toggleTodo(id))
+    };
+  */
+}
+
+/*
+  Promote the "dumb", redux-unaware, presentational component, to a "smart",
+  redux-aware, container component.
+*/
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

@@ -9,9 +9,12 @@
     "lint": "prettier --write '{,!(node_modules)/}**/*.{js,jsx}'"
   },
   "dependencies": {
+    "immutable": "^3.8.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "prettier": "^1.12.1"

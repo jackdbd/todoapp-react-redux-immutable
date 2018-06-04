@@ -2,10 +2,10 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { addTodo, toggleTodo } from "../actions";
-import Todo from "../components/todo";
+import Todo from "../components/Todo";
 
 const TodoList = props => {
-  // const { todos, addTodo, toggleTodo } = props;
+  const { primaryColor, secondaryColor } = props;
 
   const onKeyDown = event => {
     const isEnterKey = event.which === 13;
@@ -22,27 +22,25 @@ const TodoList = props => {
 
   const renderTodo = todo => {
     return (
-      <li
-        key={todo.get("id")}
-        className="todo__item"
-        onClick={() => props.toggleTodo(todo.get("id"))}
-      >
-        <Todo todo={todo} />
+      <li key={todo.get("id")} onClick={() => props.toggleTodo(todo.get("id"))}>
+        <Todo
+          text={todo.get("text")}
+          primaryColor={primaryColor}
+          secondaryColor={secondaryColor}
+          isDone={todo.get("isDone")}
+        />
       </li>
     );
   };
 
   return (
-    <div className="todo">
-      <input
-        className="todo__entry"
-        type="text"
-        placeholder="Add todo"
-        onKeyDown={onKeyDown}
-      />
-      <ul className="todo__list">
-        {props.todos.map(todo => renderTodo(todo))}
-      </ul>
+    <div>
+      <div className="row">
+        <div className="input-field col s6 offset-s3">
+          <input type="text" placeholder="Add Todo" onKeyDown={onKeyDown} />
+        </div>
+      </div>
+      <ul>{props.todos.map(todo => renderTodo(todo))}</ul>
     </div>
   );
 };

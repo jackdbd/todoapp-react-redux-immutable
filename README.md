@@ -1,6 +1,6 @@
 # todoapp-react-redux-immutable
 
-[See it here](http://damaged-holiday.surge.sh/)
+[See it here](https://jackdbd.github.io/todoapp-react-redux-immutable/)
 
 A simple Todo App built with:
 

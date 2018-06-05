@@ -11,14 +11,14 @@ class App extends Component {
     const primaryColor = "deep-purple darken-4";
     const secondaryColor = "blue darken-1";
     return (
-      <div className="container">
+      <div className="app container">
         <Header primaryColor={primaryColor} />
-        <main>
+        <div className="app-content">
           <TodoList
             primaryColor={primaryColor}
             secondaryColor={secondaryColor}
           />
-        </main>
+        </div>
         <Footer primaryColor={primaryColor} />
       </div>
     );
